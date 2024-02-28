@@ -1,0 +1,9 @@
+.album-container {
+    height: 100% vh;
+    width: 300px;
+    background-color: white;
+}
+
+.album-container ul li {
+    list-style: none;
+}
