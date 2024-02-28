@@ -1,7 +1,7 @@
 <div class="album-container">
-  <ul>
-    <li *ngFor="let album of albums">
-      <a>{{ album.title | titlecase }}</a>
-    </li>
-  </ul>
+  <mat-list>
+    <mat-list-item *ngFor="let album of albums">
+      <a>{{ album.title | titlecase }} ({{ album.photoCount }})</a>
+    </mat-list-item>
+  </mat-list>
 </div>

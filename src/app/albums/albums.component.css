@@ -1,9 +1,8 @@
 .album-container {
-    height: 100% vh;
+    height: 100%;
     width: 300px;
-    background-color: white;
 }
 
-.album-container ul li {
-    list-style: none;
+mat-list-item a {
+    cursor: pointer;
 }
