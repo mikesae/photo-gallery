@@ -1,10 +1,8 @@
-<div class="container responsive-grid">
+<div class="responsive-grid">
   <mat-card *ngFor="let photo of photos">
-    <mat-card-header>
-      <mat-card-subtitle>
-        <span>{{ photo.title }}</span>
-      </mat-card-subtitle>
-    </mat-card-header>
     <img mat-card-image src="{{ photo.url }}" />
+    <mat-card-footer>
+      <span>{{ photo.title }}</span>
+    </mat-card-footer>
   </mat-card>
 </div>

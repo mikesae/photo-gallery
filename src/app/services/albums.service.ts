@@ -37,7 +37,8 @@ export class AlbumsService {
   }
 
   private photoUrl(photo: any): string {
-    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_s.jpg`
+    // Sizes from https://www.flickr.com/services/api/misc.urls.html
+    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
   }
 
   find(id:string): Observable<Photo[] > {

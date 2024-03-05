@@ -1,8 +1,0 @@
-.album-container {
-    height: 100%;
-    width: 300px;
-}
-
-mat-list-item a {
-    cursor: pointer;
-}
