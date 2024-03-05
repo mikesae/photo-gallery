@@ -1,8 +1,8 @@
 <div class="album-container">
   <mat-list>
     <mat-list-item *ngFor="let album of albums">
-      <a (click)="selectAlbum(album)"
-        >{{ album.title | titlecase }} ({{ album.photoCount }})
+      <a mat-button class="nav-link" routerLink="/album/{{ album.id }}">
+        {{ album.title | titlecase }} ({{ album.photoCount }})
       </a>
     </mat-list-item>
   </mat-list>

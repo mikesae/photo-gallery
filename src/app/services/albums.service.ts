@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Album } from '../models/album';
+import { Photo } from '../models/Photo';
 
 const BASE_URL = 'https://api.flickr.com/services/rest'
 const GET_LIST_METHOD = 'flickr.photosets.getList'
+const GET_PHOTOS_METHOD = 'flickr.photosets.getPhotos'
 const USER_ID = import.meta.env['NG_APP_FLICKR_USER_ID']
 const API_KEY = import.meta.env['NG_APP_FLICKR_API_KEY']
   
@@ -34,8 +36,16 @@ export class AlbumsService {
         }))
   }
 
-  find(id:string) {
-    return this.http.get(this.getUrlWithID(id))
+  find(id:string): Observable<Photo[] > {
+    return this.http.get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
+        .pipe(
+        map((response: any) => {
+          const photos = response.photoset.photo
+          return photos.map((photo: any) => ({
+            id: photo.id,
+            title: photo.title
+          }))
+        }))
   }
 
   private getUrl() {
@@ -43,7 +53,7 @@ export class AlbumsService {
   }
 
   private getUrlWithID(id:string) {
-    return `${this.getUrl()}/${id}`;
+    return `${this.getUrl()}&photoset_id=${id}`;
   }
 
 }

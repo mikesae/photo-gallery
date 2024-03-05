@@ -10,13 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumsComponent } from './albums/albums.component';
-import { PhotosComponent } from './photos/photos.component';
+import { AlbumComponent } from './album/album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsComponent,
-    PhotosComponent
+    AlbumComponent
   ],
   imports: [
     BrowserModule,

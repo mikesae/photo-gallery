@@ -24,7 +24,11 @@ export class AlbumsComponent implements OnInit {
       })
   }
   
-  selectAlbum(album: any) {
-    this.selectAlbum = { ...album };
+  selectAlbum(album: Album) {
+    this.selectedAlbum = { ...album };
+  }
+
+  getLink(album: Album) {
+    return `/album/${album.id}`;
   }
 }
