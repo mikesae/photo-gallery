@@ -1,7 +1,9 @@
 <div class="album-container">
   <mat-list>
     <mat-list-item *ngFor="let album of albums">
-      <a>{{ album.title | titlecase }} ({{ album.photoCount }})</a>
+      <a (click)="selectAlbum(album)"
+        >{{ album.title | titlecase }} ({{ album.photoCount }})
+      </a>
     </mat-list-item>
   </mat-list>
 </div>

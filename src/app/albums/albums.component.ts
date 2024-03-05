@@ -9,6 +9,7 @@ import { Album } from '../models/album';
 })
 export class AlbumsComponent implements OnInit {
   albums: Album[] = [];
+  selectedAlbum: Album = {};
 
   constructor(private albumsService: AlbumsService) {}
 
@@ -21,5 +22,9 @@ export class AlbumsComponent implements OnInit {
       .subscribe(result => {
         this.albums.push(...result)
       })
-    }
+  }
+  
+  selectAlbum(album: any) {
+    this.selectAlbum = { ...album };
+  }
 }
