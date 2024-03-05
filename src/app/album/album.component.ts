@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlbumsService } from '../services/albums.service';
-import { Photo } from '../models/Photo';
+import { Photo } from '../models/photo';
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+  styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
   photos: Photo[] = [];

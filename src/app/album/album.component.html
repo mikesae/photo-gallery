@@ -1,3 +1,10 @@
-<mat-list>
-  <mat-list-item *ngFor="let photo of photos">{{ photo.title }}</mat-list-item>
-</mat-list>
+<div class="container responsive-grid">
+  <mat-card *ngFor="let photo of photos">
+    <mat-card-header>
+      <mat-card-subtitle>
+        <span>{{ photo.title }}</span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{ photo.url }}" />
+  </mat-card>
+</div>

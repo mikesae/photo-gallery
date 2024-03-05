@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Album } from '../models/album';
-import { Photo } from '../models/Photo';
+import { Photo } from '../models/photo';
 
 const BASE_URL = 'https://api.flickr.com/services/rest'
 const GET_LIST_METHOD = 'flickr.photosets.getList'
@@ -36,6 +36,10 @@ export class AlbumsService {
         }))
   }
 
+  private photoUrl(photo: any): string {
+    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_s.jpg`
+  }
+
   find(id:string): Observable<Photo[] > {
     return this.http.get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
         .pipe(
@@ -43,7 +47,8 @@ export class AlbumsService {
           const photos = response.photoset.photo
           return photos.map((photo: any) => ({
             id: photo.id,
-            title: photo.title
+            title: photo.title,
+            url: this.photoUrl(photo)
           }))
         }))
   }
