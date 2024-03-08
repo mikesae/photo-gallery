@@ -1,8 +1,6 @@
-<div class="responsive-grid">
-  <mat-card *ngFor="let photo of photos">
-    <img mat-card-image src="{{ photo.url }}" />
-    <mat-card-footer>
-      {{ photo.title }}
-    </mat-card-footer>
-  </mat-card>
-</div>
+<ngx-masonry [options]="{ gutter: 5 }">
+  <div class="grid-sizer"></div>
+  <div ngxMasonryItem *ngFor="let photo of photos" class="masonry-item">
+    <img src="{{ photo.url }}" />
+  </div>
+</ngx-masonry>
