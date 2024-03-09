@@ -15,23 +15,55 @@
 $portfolio-app-primary: mat.define-palette(mat.$teal-palette);
 $portfolio-app-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
 
+// Use dark theme by default. If user prefers light theme, override below.
+$portfolio-app-theme: mat.define-dark-theme((
+  color: (
+    primary: $portfolio-app-primary,
+    accent: $portfolio-app-accent,
+  ),
+  // Only include `typography` and `density` in the default dark theme.
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
 // The warn palette is optional (defaults to red).
 $portfolio-app-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$portfolio-app-theme: mat.define-light-theme((
-  color: (
-    primary: $portfolio-app-primary,
-    accent: $portfolio-app-accent,
-    warn: $portfolio-app-warn,
-  )
-));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($portfolio-app-theme);
+
+body {
+  background: black;
+
+  mat-card-title {
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+      background: white;
+
+      .mat-mdc-card {
+        background: whitesmoke;
+      }
+
+      .mat-mdc-card-title {
+        color: black;
+        opacity: 0.6;
+      }
+  
+      .mat-mdc-card-subtitle {
+        color: black;
+        opacity: 0.5;
+      }
+    }
+}
 
 html {
   height: 100%;
@@ -90,59 +122,12 @@ mat-toolbar {
   z-index: 1;
 }
 
-mat-sidenav {
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.24);
-  width: 300px;
-  padding-top: 10px;
-}
-
-.mat-sidenav-container {
-  background: #f5f5f5;
-  flex: 1;
-}
-
 .fill-remaining-space {
   flex: 1 1 auto;
 }
 
 .full-width {
   width: 100%;
-}
-
-.courses-containers {
-  display: flex;
-  justify-content: space-around;
-
-  .courses-list {
-    width: 49%;
-  }
-
-  .course-details {
-    width: 49%;
-  }
-}
-
-.login-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(100vh - 64px);
-
-  mat-card {
-    width: 400px;
-  }
-}
-
-.dashboard-card {
-  position: absolute !important;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-
-  mat-card-header {
-    justify-content: center;
-  }
 }
 
 .dashboard-card-content {
@@ -180,18 +165,6 @@ mat-sidenav {
   }
 }
 
-.details-container {
-  mat-form-field {
-    width: 100%;
-  }
-
-  mat-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-}
-
 mat-form-field {
   width: 100%;
 }
@@ -214,7 +187,6 @@ mat-card-actions {
 }
 
 .nav-link {
-  color: rgba(0, 0, 0, 0.54);
   display: flex !important;
   align-items: center;
   padding-top: 5px;
@@ -235,17 +207,12 @@ mat-toolbar {
     margin-right: 0.5rem;
   }
 
-  mat-icon {
-    color: white;
-  }
-
   .spacer {
     flex: 1 1 auto;
   }
 
   .title {
     vertical-align: middle;
-    color: white;
   }
 
   .logo {
