@@ -15,7 +15,7 @@ export class AlbumComponent implements OnInit {
   
   ngOnInit(): void {
     this.route.params.subscribe((params:any) => {
-      this.albumsService.find(params.id).subscribe(result => {
+      this.albumsService.getAlbumPhotos(params.id).subscribe(result => {
         this.photos = [];
         this.photos.push(...result)
       }) 

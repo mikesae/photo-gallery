@@ -36,12 +36,14 @@ export class AlbumsService {
         }))
   }
 
+
+
   private photoUrl(photo: any): string {
     // Sizes from https://www.flickr.com/services/api/misc.urls.html
     return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
   }
 
-  find(id:string): Observable<Photo[] > {
+  getAlbumPhotos(id:string): Observable<Photo[] > {
     return this.http.get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
         .pipe(
         map((response: any) => {
@@ -51,6 +53,17 @@ export class AlbumsService {
             title: photo.title,
             url: this.photoUrl(photo)
           }))
+        }))
+  }
+
+  getAlbum(id: string): Observable<Album> {
+        return this.http.get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
+        .pipe(
+        map((response: any) => {
+          return { 
+            id: Number(id),
+            title: response.photoset.title
+          }
         }))
   }
 
