@@ -1,6 +1,12 @@
-<ngx-masonry [options]="{ gutter: 5 }">
+<!-- See https://masonry.desandro.com/options.html for options. -->
+<ngx-masonry
+  [options]="{
+    itemSelector: '.grid-item',
+    gutter: 5
+  }"
+>
   <div class="grid-sizer"></div>
-  <div ngxMasonryItem *ngFor="let photo of photos" class="masonry-item">
+  <div ngxMasonryItem *ngFor="let photo of photos" class="grid-item">
     <img src="{{ photo.url }}" />
   </div>
 </ngx-masonry>

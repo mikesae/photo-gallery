@@ -39,8 +39,10 @@ export class AlbumsService {
 
 
   private photoUrl(photo: any): string {
-    // Sizes from https://www.flickr.com/services/api/misc.urls.html
-    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_m.jpg`
+    // Sizes from https://www.flickr.com/services/api/misc.urls.html.
+    // Match these with .grid-item width.
+    // n - small, longest edge of 320px
+    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`
   }
 
   getAlbumPhotos(id:string): Observable<Photo[] > {
