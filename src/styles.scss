@@ -54,8 +54,7 @@ body {
         background: whitesmoke;
       }
 
-      .mat-mdc-card-title,
-      .nav-link {
+      .mat-mdc-card-title {
         color: black;
         opacity: 0.6;
       }
@@ -197,10 +196,6 @@ mat-card-actions {
 
   &.pad-left {
     padding-left: 0.25rem;
-  }
-
-  &:visited {
-    color: inherit;
   }
 
   &:hover {
