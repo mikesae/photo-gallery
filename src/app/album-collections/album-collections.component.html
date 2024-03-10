@@ -1,17 +1,17 @@
 <div class="responsive-grid">
-  <mat-card *ngFor="let album of albums">
+  <mat-card *ngFor="let albumCollection of albumCollections">
     <mat-card-header>
       <mat-card-title>
         <mat-button
           mat-button
           class="nav-link"
-          routerLink="/album/{{ album.id }}"
+          routerLink="/collection/{{ albumCollection.id }}"
         >
-          {{ album.title | titlecase }} ({{ album.photoCount }})
+          {{ albumCollection.title | titlecase }}
         </mat-button>
       </mat-card-title>
       <mat-card-subtitle>
-        {{ album.description }}
+        {{ albumCollection.description }}
       </mat-card-subtitle>
     </mat-card-header>
   </mat-card>

@@ -40,7 +40,8 @@ $portfolio-app-warn: mat.define-palette(mat.$red-palette);
 body {
   background: black;
 
-  mat-card-title {
+  mat-card-title, 
+  .nav-link {
     color: white;
   }
 }
@@ -53,7 +54,8 @@ body {
         background: whitesmoke;
       }
 
-      .mat-mdc-card-title {
+      .mat-mdc-card-title,
+      .nav-link {
         color: black;
         opacity: 0.6;
       }
@@ -191,6 +193,15 @@ mat-card-actions {
   align-items: center;
   padding-top: 5px;
   padding-bottom: 5px;
+  text-decoration: none;
+
+  &.pad-left {
+    padding-left: 0.25rem;
+  }
+
+  &:visited {
+    color: inherit;
+  }
 
   &:hover {
     cursor: pointer;
@@ -228,3 +239,18 @@ mat-toolbar {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+mat-card {
+  mat-card-footer {
+    padding: 0.25rem;
+    margin: 0 auto;
+  }
+
+  overflow-x: hidden;
+}

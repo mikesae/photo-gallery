@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Album } from '../models/album';
 import { Photo } from '../models/photo';
+import { AlbumCollection } from '../models/AlbumCollection';
 
 const BASE_URL = 'https://api.flickr.com/services/rest'
 const GET_LIST_METHOD = 'flickr.photosets.getList'
 const GET_PHOTOS_METHOD = 'flickr.photosets.getPhotos'
+const GET_COLLECTIONS_METHOD = 'flickr.collections.getTree'
 const USER_ID = import.meta.env['NG_APP_FLICKR_USER_ID']
 const API_KEY = import.meta.env['NG_APP_FLICKR_API_KEY']
   
@@ -14,14 +16,14 @@ const API_KEY = import.meta.env['NG_APP_FLICKR_API_KEY']
   providedIn: 'root'
 })
 
-export class AlbumsService {
+export class PhotoStorageService {
   method = 'albums'
   headers: any;
   
   constructor(private http: HttpClient) { 
   }
 
-  all(): Observable<Album[]> {
+  getAlbums(): Observable<Album[]> {
     return this.http
       .get(`${this.getUrl()}&method=${GET_LIST_METHOD}`)
       .pipe(
@@ -35,8 +37,6 @@ export class AlbumsService {
           }))
         }))
   }
-
-
 
   private photoUrl(photo: any): string {
     // Sizes from https://www.flickr.com/services/api/misc.urls.html.
@@ -66,6 +66,48 @@ export class AlbumsService {
             id: Number(id),
             title: response.photoset.title
           }
+        }))
+  }
+
+  getAlbumCollections(): Observable<AlbumCollection[]> {
+    return this.http
+      .get(`${this.getUrl()}&method=${GET_COLLECTIONS_METHOD}`)
+      .pipe(
+        map((response: any) => {
+          const collections = response.collections.collection
+          return collections.map((collection: any) => ({
+            id: collection.id,
+            title: collection.title,
+            description: collection.description
+          }))
+        }))
+  }
+
+  getAlbumCollection(collectionId: string): Observable<AlbumCollection> {
+    return this.http
+      .get(`${this.getUrl()}&collection_id=${collectionId}&method=${GET_COLLECTIONS_METHOD}`)
+      .pipe(
+        map((response: any) => {
+          const collection = response.collections.collection[0]
+          return { 
+            id: collection.id,
+            title: collection.title,
+            description: collection.description
+          }
+        }))
+  }
+
+   getAlbumsInCollection(collectionId:string): Observable<Album[]> {
+    return this.http
+      .get(`${this.getUrl()}&collection_id=${collectionId}&method=${GET_COLLECTIONS_METHOD}`)
+      .pipe(
+        map((response: any) => {
+          const albums = response.collections.collection[0].set
+          return albums.map((album: any) => ({
+            id: album.id,
+            title: album.title,
+            description: album.description
+          }))
         }))
   }
 

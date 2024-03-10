@@ -10,16 +10,18 @@ import { MatCardModule } from '@angular/material/card'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlbumsComponent } from './albums/albums.component';
 import { AlbumComponent } from './album/album.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { AlbumCollectionsComponent } from './album-collections/album-collections.component';
+import { AlbumCollectionComponent } from './album-collection/album-collection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlbumsComponent,
-    AlbumComponent
+    AlbumComponent,
+    AlbumCollectionsComponent,
+    AlbumCollectionComponent
   ],
   imports: [
     BrowserModule,
