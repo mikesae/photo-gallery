@@ -3,7 +3,7 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { filter } from 'rxjs';
 import { PhotoStorageService } from './services/photoStorage.service';
 import { Album } from './models/album';
-import { AlbumCollection } from './models/AlbumCollection';
+import { AlbumCollection } from './models/albumCollection';
 
 type Link = {
   title: string;
