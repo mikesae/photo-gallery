@@ -2,10 +2,10 @@ import { NgModule, isDevMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,13 +15,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { AlbumCollectionsComponent } from './album-collections/album-collections.component';
 import { AlbumCollectionComponent } from './album-collection/album-collection.component';
+import { AlbumCardComponent } from './album-card/album-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
     AlbumCollectionsComponent,
-    AlbumCollectionComponent
+    AlbumCollectionComponent,
+    AlbumCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,11 +39,11 @@ import { AlbumCollectionComponent } from './album-collection/album-collection.co
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
-    NgxMasonryModule
+    NgxMasonryModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

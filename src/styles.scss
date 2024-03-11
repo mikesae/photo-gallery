@@ -237,12 +237,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .responsive-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 1rem;
 }
 
 mat-card {
-  mat-card-footer {
+  mat-card-header,
+  mat-card-content {
     padding: 0.25rem;
     margin: 0 auto;
   }

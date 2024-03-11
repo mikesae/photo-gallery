@@ -57,6 +57,17 @@ export class PhotoStorageService {
       );
   }
 
+  getAlbumPhotoUrl(id: string): Observable<string> {
+    return this.http
+      .get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
+      .pipe(
+        map((response: any) => {
+          const firstPhoto = response.photoset.photo[0];
+          return this.photoUrl(firstPhoto);
+        })
+      );
+  }
+
   getAlbum(id: string): Observable<Album> {
     return this.http
       .get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)

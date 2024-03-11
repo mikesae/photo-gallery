@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlbumCollectionsComponent } from './album-collections.component';
+import { CollectionsComponent } from './album-collections.component';
 
 describe('AlbumCollectionsComponent', () => {
-  let component: AlbumCollectionsComponent;
-  let fixture: ComponentFixture<AlbumCollectionsComponent>;
+  let component: CollectionsComponent;
+  let fixture: ComponentFixture<CollectionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlbumCollectionsComponent ]
-    })
-    .compileComponents();
+      declarations: [CollectionsComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(AlbumCollectionsComponent);
+    fixture = TestBed.createComponent(CollectionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
