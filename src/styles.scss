@@ -40,9 +40,14 @@ $portfolio-app-warn: mat.define-palette(mat.$red-palette);
 body {
   background: black;
 
-  mat-card-title, 
+  mat-card-footer,
+  mat-card-title,
   .nav-link {
     color: white;
+  }
+
+  mat-card-footer {
+    opacity: 0.6;
   }
 }
 
@@ -60,8 +65,8 @@ body {
           opacity: 0.6;
         }
       }
-  
-      .mat-mdc-card-subtitle {
+
+      mat-card-footer {
         color: black;
         opacity: 0.5;
       }
