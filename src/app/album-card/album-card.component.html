@@ -9,11 +9,11 @@
         {{ theAlbum.title | titlecase }}
       </mat-button>
     </mat-card-title>
-    <mat-card-subtitle>
-      {{ theAlbum.description }}
-    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <img src="{{ url }}" />
   </mat-card-content>
+  <mat-card-footer>
+    {{ theAlbum.description }}
+  </mat-card-footer>
 </mat-card>
