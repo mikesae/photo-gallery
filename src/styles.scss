@@ -55,8 +55,10 @@ body {
       }
 
       .mat-mdc-card-title {
-        color: black;
-        opacity: 0.6;
+        .nav-link {
+          color: black;
+          opacity: 0.6;
+        }
       }
   
       .mat-mdc-card-subtitle {
