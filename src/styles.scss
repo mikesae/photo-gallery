@@ -245,10 +245,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mat-card {
   mat-card-header,
-  mat-card-footer,
   mat-card-content {
     padding: 0.25rem;
-    margin: 0 auto;
   }
 
   img {
@@ -257,5 +255,6 @@ mat-card {
 
   mat-card-footer {
     min-height: 1.25rem;
+    padding: 1rem;
   }
 }
