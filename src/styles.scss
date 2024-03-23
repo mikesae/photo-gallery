@@ -248,6 +248,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   gap: 1rem;
 }
 
+// Show 2 columns for landscape small screen (e.g., iPhone 7)
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    .responsive-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+}
+
 mat-card {
   mat-card-header,
   mat-card-content {
