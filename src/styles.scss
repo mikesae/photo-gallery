@@ -267,6 +267,10 @@ mat-card {
 
   img {
     margin: 0 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   mat-card-footer {

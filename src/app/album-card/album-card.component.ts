@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Album } from '../models/album';
 import { PhotoStorageService } from '../services/photoStorage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'album-card',
@@ -11,7 +12,7 @@ export class AlbumCardComponent implements OnInit {
   theAlbum: Album = {};
   url: string = '';
 
-  constructor(private service: PhotoStorageService) {}
+  constructor(private service: PhotoStorageService, private router: Router) {}
 
   ngOnInit(): void {
     this.setAlbumUrl();
@@ -23,6 +24,10 @@ export class AlbumCardComponent implements OnInit {
       .subscribe((url: string) => {
         this.url = url;
       });
+  }
+
+  onImageClick(): void {
+    this.router.navigate([`/album/${this.theAlbum.id}`])
   }
 
   @Input() set album(value: Album) {

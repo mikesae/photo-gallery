@@ -1,16 +1,12 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      <mat-button
-        mat-button
-        class="nav-link"
-        routerLink="/album/{{ theAlbum.id }}"
-      >
+      <mat-button mat-button class="nav-link" routerLink="/album/{{ theAlbum.id }}">
         {{ theAlbum.title | titlecase }}
       </mat-button>
     </mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{ url }}" />
+  <img mat-card-image src="{{ url }}" (click)='onImageClick()' />
   <mat-card-footer>
     {{ theAlbum.description }}
   </mat-card-footer>
