@@ -16,6 +16,7 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { AlbumCollectionsComponent } from './album-collections/album-collections.component';
 import { AlbumCollectionComponent } from './album-collection/album-collection.component';
 import { AlbumCardComponent } from './album-card/album-card.component';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AlbumCardComponent } from './album-card/album-card.component';
     AlbumCollectionsComponent,
     AlbumCollectionComponent,
     AlbumCardComponent,
+    ImageComponent,
   ],
   imports: [
     BrowserModule,

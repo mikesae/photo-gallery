@@ -7,6 +7,6 @@
 >
   <div class="grid-sizer"></div>
   <div ngxMasonryItem *ngFor="let photo of photos" class="grid-item">
-    <img src="{{ photo.url }}" />
+    <img src="{{ photo.url }}" (click)="handleImageClick(photo)" />
   </div>
 </ngx-masonry>
