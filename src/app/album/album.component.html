@@ -1,12 +1,18 @@
+<div class="top-container">
+  <h1>{{selectedPhoto?.title}}</h1>
+  <img class="large-image" src="{{selectedPhoto?.url}}">
+</div>
+<hr />
 <!-- See https://masonry.desandro.com/options.html for options. -->
-<ngx-masonry
-  [options]="{
-    itemSelector: '.grid-item',
-    gutter: 5
-  }"
->
+<ngx-masonry [options]="{
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  horizontalOrder: true,
+  percentPosition: true,
+  gutter: 5,
+  }">
   <div class="grid-sizer"></div>
-  <div ngxMasonryItem *ngFor="let photo of photos" class="grid-item">
+  <div ngxMasonryItem *ngFor="let photo of photos" class="grid-item" (click)='onImageClick(photo)'>
     <img src="{{ photo.url }}" />
   </div>
 </ngx-masonry>

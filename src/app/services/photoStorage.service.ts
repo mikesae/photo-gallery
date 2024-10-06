@@ -9,6 +9,7 @@ const BASE_URL = 'https://api.flickr.com/services/rest';
 const GET_LIST_METHOD = 'flickr.photosets.getList';
 const GET_PHOTOS_METHOD = 'flickr.photosets.getPhotos';
 const GET_COLLECTIONS_METHOD = 'flickr.collections.getTree';
+const GET_PHOTO_INFO = 'flickr.photos.getInfo';
 const USER_ID = import.meta.env['NG_APP_FLICKR_USER_ID'];
 const API_KEY = import.meta.env['NG_APP_FLICKR_API_KEY'];
 
@@ -40,6 +41,18 @@ export class PhotoStorageService {
     // Match these with .grid-item width.
     // n - small, longest edge of 320px
     return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_n.jpg`;
+  }
+
+
+  largePhotoUrl(photoId: string): Observable<string> {
+    return this.http
+      .get(`${this.getUrl()}&method=${GET_PHOTO_INFO}&photo_id=${photoId}`)
+      .pipe(
+        map((response: any) => {
+          const photo = response.photo;
+          return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
+        })
+      );
   }
 
   getAlbumPhotos(id: string): Observable<Photo[]> {
