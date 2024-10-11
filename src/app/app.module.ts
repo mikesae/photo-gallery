@@ -16,6 +16,8 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { AlbumCollectionsComponent } from './album-collections/album-collections.component';
 import { AlbumCollectionComponent } from './album-collection/album-collection.component';
 import { AlbumCardComponent } from './album-card/album-card.component';
+import { PhotoModalComponent } from './photo-modal/photo-modal.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AlbumCardComponent } from './album-card/album-card.component';
     AlbumCollectionsComponent,
     AlbumCollectionComponent,
     AlbumCardComponent,
+    PhotoModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +45,9 @@ import { AlbumCardComponent } from './album-card/album-card.component';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     NgxMasonryModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

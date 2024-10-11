@@ -1,8 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxMasonryComponent } from 'ngx-masonry';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'; // Import MatDialog module
 import { Photo } from '../models/photo';
 import { PhotoStorageService } from '../services/photoStorage.service';
+import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-album',
@@ -13,9 +16,8 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   @ViewChild(NgxMasonryComponent) masonry!: NgxMasonryComponent;
 
   photos: Photo[] = [];
-  selectedPhoto: Photo | null = null;
 
-  constructor(private route: ActivatedRoute, private photoStorageService: PhotoStorageService) { }
+  constructor(private route: ActivatedRoute, private photoStorageService: PhotoStorageService, private matDialog: MatDialog) { } // Inject MatDialog module
 
   ngAfterViewInit(): void {
     this.updateLayout();
@@ -26,9 +28,6 @@ export class AlbumComponent implements OnInit, AfterViewInit {
       this.photoStorageService.getAlbumPhotos(params.id).subscribe(result => {
         this.photos = [];
         this.photos.push(...result);
-        if (this.photos.length > 0) {
-          this.selectPhoto(this.photos[0]);
-        }
       })
     })
   }
@@ -38,21 +37,21 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onImageClick(photo: Photo): void {
-    this.selectPhoto(photo);
+  async onImageClick(photo: Photo) {
+    const photoUrl = await this.getLargePhotoUrl(photo);
+    this.matDialog.open(PhotoModalComponent, {
+      data: {
+        photoUrl
+      },
+    });
   }
 
-  private selectPhoto(photo: Photo) {
-    this.selectedPhoto = { ...photo };
+  private async getLargePhotoUrl(photo: Photo) {
     const id = photo.id?.toString();
 
     if (id) {
-      this.photoStorageService.largePhotoUrl(id!).subscribe(url => {
-        if (this.selectedPhoto) {
-          this.selectedPhoto.url = url;
-          this.updateLayout();
-        }
-      });
+      return await firstValueFrom(this.photoStorageService.largePhotoUrl(id));
     }
+    return null;
   }
 }
