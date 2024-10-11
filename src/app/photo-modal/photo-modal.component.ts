@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Photo } from '../models/photo';
 
 @Component({
   selector: 'app-photo-modal',
@@ -9,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class PhotoModalComponent {
   constructor(
     public dialogRef: MatDialogRef<PhotoModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { photoUrl: string }
+    @Inject(MAT_DIALOG_DATA) public data: { photo: Photo }
   ) { }
 
   closeModal(): void {

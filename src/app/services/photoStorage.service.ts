@@ -20,7 +20,7 @@ export class PhotoStorageService {
   method = 'albums';
   headers: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAlbums(): Observable<Album[]> {
     return this.http.get(`${this.getUrl()}&method=${GET_LIST_METHOD}`).pipe(
@@ -56,8 +56,9 @@ export class PhotoStorageService {
   }
 
   getAlbumPhotos(id: string): Observable<Photo[]> {
+    const extras = 'description, date_taken';
     return this.http
-      .get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}`)
+      .get(`${this.getUrlWithID(id)}&method=${GET_PHOTOS_METHOD}&extras=${extras}`)
       .pipe(
         map((response: any) => {
           const photos = response.photoset.photo;
@@ -65,6 +66,8 @@ export class PhotoStorageService {
             id: photo.id,
             title: photo.title,
             url: this.photoUrl(photo),
+            description: photo.description?._content ?? '',
+            dateTaken: photo.datetaken ?? '',
           }));
         })
       );

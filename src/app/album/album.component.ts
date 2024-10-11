@@ -39,9 +39,10 @@ export class AlbumComponent implements OnInit, AfterViewInit {
 
   async onImageClick(photo: Photo) {
     const photoUrl = await this.getLargePhotoUrl(photo);
+    const largePhoto = photoUrl ? { ...photo, url: photoUrl } : photo;
     this.matDialog.open(PhotoModalComponent, {
       data: {
-        photoUrl
+        photo: largePhoto
       },
     });
   }
