@@ -1,9 +1,9 @@
 <div class="modal">
     <div class="modal-content">
-        <span class="close" (click)="closeModal()">&times;</span>
+        <span class="close close-btn" (click)="closeModal()">&times;</span>
         <h1>{{data.photo.title}}</h1>
         <img [src]="data.photo.url" alt="Photo">
         <p>{{data.photo.description}}</p>
-        <p>{{data.photo.dateTaken}}</p>
+        <p class="date-taken">{{data.photo.dateTaken}}</p>
     </div>
 </div>

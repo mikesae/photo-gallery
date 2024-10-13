@@ -30,6 +30,18 @@
     p {
         color: white;
     }
+
+    span.close-btn {
+        &:hover {
+            color: #888
+        }
+
+        ;
+    }
+
+    .date-taken {
+        font-size: 0.75rem;
+    }
 }
 
 .close {
