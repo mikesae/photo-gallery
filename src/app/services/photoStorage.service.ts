@@ -55,6 +55,18 @@ export class PhotoStorageService {
       );
   }
 
+  displayDate(dateIn: string): string {
+    // convert string to date
+    const dateObj = new Date(dateIn);
+    // get month name and year in date
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const month = monthNames[dateObj.getMonth()];
+    const day = dateObj.getDate();
+    const year = dateObj.getFullYear();
+    const dayName = dateObj.toLocaleDateString('en-US', { weekday: 'long' });
+    return `${dayName}, ${month} ${day}, ${year}`;
+  }
+
   getAlbumPhotos(id: string): Observable<Photo[]> {
     const extras = 'description, date_taken';
     return this.http
@@ -67,7 +79,7 @@ export class PhotoStorageService {
             title: photo.title,
             url: this.photoUrl(photo),
             description: photo.description?._content ?? '',
-            dateTaken: photo.datetaken ?? '',
+            dateTaken: this.displayDate(photo.datetaken),
           }));
         })
       );
