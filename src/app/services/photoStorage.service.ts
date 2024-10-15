@@ -58,6 +58,9 @@ export class PhotoStorageService {
   displayDate(dateIn: string): string {
     // convert string to date
     const dateObj = new Date(dateIn);
+    if (dateObj.toString() === 'Invalid Date') {
+      return dateIn;
+    }
     // get month name and year in date
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const month = monthNames[dateObj.getMonth()];
