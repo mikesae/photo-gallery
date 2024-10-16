@@ -1,11 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog module
 import { ActivatedRoute } from '@angular/router';
 import { NgxMasonryComponent } from 'ngx-masonry';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'; // Import MatDialog module
 import { Photo } from '../models/photo';
-import { PhotoStorageService } from '../services/photoStorage.service';
 import { PhotoModalComponent } from '../photo-modal/photo-modal.component';
-import { firstValueFrom } from 'rxjs';
+import { PhotoStorageService } from '../services/photoStorage.service';
 
 @Component({
   selector: 'app-album',
@@ -37,22 +36,11 @@ export class AlbumComponent implements OnInit, AfterViewInit {
     }
   }
 
-  async onImageClick(photo: Photo) {
-    const photoUrl = await this.getLargePhotoUrl(photo);
-    const largePhoto = photoUrl ? { ...photo, url: photoUrl } : photo;
+  onImageClick(photo: Photo) {
     this.matDialog.open(PhotoModalComponent, {
       data: {
-        photo: largePhoto
+        photo: photo
       },
     });
-  }
-
-  private async getLargePhotoUrl(photo: Photo) {
-    const id = photo.id?.toString();
-
-    if (id) {
-      return await firstValueFrom(this.photoStorageService.largePhotoUrl(id));
-    }
-    return null;
   }
 }

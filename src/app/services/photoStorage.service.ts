@@ -36,7 +36,7 @@ export class PhotoStorageService {
     );
   }
 
-  private photoUrl(photo: any): string {
+  private photoUrl(photo: Photo): string {
     // Sizes from https://www.flickr.com/services/api/misc.urls.html.
     // Match these with .grid-item width.
     // n - small, longest edge of 320px
@@ -44,15 +44,8 @@ export class PhotoStorageService {
   }
 
 
-  largePhotoUrl(photoId: string): Observable<string> {
-    return this.http
-      .get(`${this.getUrl()}&method=${GET_PHOTO_INFO}&photo_id=${photoId}`)
-      .pipe(
-        map((response: any) => {
-          const photo = response.photo;
-          return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
-        })
-      );
+  largePhotoUrl(photo: Photo): string {
+    return `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`;
   }
 
   displayDate(dateIn: string): string {
@@ -78,9 +71,9 @@ export class PhotoStorageService {
         map((response: any) => {
           const photos = response.photoset.photo;
           return photos.map((photo: any) => ({
-            id: photo.id,
-            title: photo.title,
+            ...photo,
             url: this.photoUrl(photo),
+            largeUrl: this.largePhotoUrl(photo),
             description: photo.description?._content ?? '',
             dateTaken: this.displayDate(photo.datetaken),
           }));
