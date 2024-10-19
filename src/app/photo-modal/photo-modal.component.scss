@@ -35,12 +35,33 @@
         &:hover {
             color: #888
         }
-
-        ;
     }
 
     .date-taken {
         font-size: 0.75rem;
+    }
+
+    .btn-group {
+        margin-bottom: 1rem;
+
+        button {
+            background-color: black;
+            color: white;
+            margin-right: 10px;
+
+            &:last-child {
+                float: right;
+            }
+        }
+    }
+
+    mat-icon {
+        color: white;
+
+        &:hover {
+            color: #888;
+            cursor: pointer
+        }
     }
 }
 

@@ -39,7 +39,8 @@ export class AlbumComponent implements OnInit, AfterViewInit {
   onImageClick(photo: Photo) {
     this.matDialog.open(PhotoModalComponent, {
       data: {
-        photo: photo
+        photos: this.photos,
+        idxSelectedPhoto: this.photos.indexOf(photo)
       },
     });
   }
