@@ -33,7 +33,7 @@
 
     span.close-btn {
         &:hover {
-            color: #888
+            color: #888;
         }
     }
 
@@ -47,20 +47,15 @@
         button {
             background-color: black;
             color: white;
-            margin-right: 10px;
 
             &:last-child {
                 float: right;
             }
-        }
-    }
 
-    mat-icon {
-        color: white;
-
-        &:hover {
-            color: #888;
-            cursor: pointer
+            &:disabled {
+                color: darkgray;
+                cursor: not-allowed;
+            }
         }
     }
 }
