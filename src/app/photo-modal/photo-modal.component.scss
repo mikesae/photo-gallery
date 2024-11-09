@@ -7,8 +7,8 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
-    overflow: auto;
+    height: 100vh;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -17,12 +17,13 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 100%;
-    max-width: 640px;
 
     img {
         width: 100%;
-        height: auto;
+
+        @media (orientation: landscape) {
+            max-height: calc(100vh - 12rem);
+        }
     }
 
     h1,
