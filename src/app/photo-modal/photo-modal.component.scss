@@ -6,7 +6,7 @@
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
@@ -17,9 +17,11 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
+    max-width: 90vw;
 
     img {
         width: 100%;
+        margin: 0 auto;
 
         @media (orientation: landscape) {
             max-height: calc(100vh - 12rem);
