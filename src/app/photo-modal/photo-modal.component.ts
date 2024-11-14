@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Photo } from '../models/photo';
 
@@ -10,11 +10,29 @@ import { Photo } from '../models/photo';
 export class PhotoModalComponent {
   selectedPhoto: Photo = {} as Photo;
 
+
   constructor(
     public dialogRef: MatDialogRef<PhotoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { photos: Photo[], idxSelectedPhoto: number }
   ) {
     this.selectedPhoto = this.data.photos[this.data.idxSelectedPhoto];
+  }
+
+  @ViewChild('photo') photoElement!: ElementRef;
+
+  ngAfterViewInit(): void {
+    this.setPhotoOrientationClass();
+  }
+
+  setPhotoOrientationClass(): void {
+    const img = this.photoElement.nativeElement;
+    img.onload = () => {
+      if (img.naturalWidth > img.naturalHeight) {
+        img.classList.add('landscape');
+      } else {
+        img.classList.add('portrait');
+      }
+    };
   }
 
   closeModal(): void {

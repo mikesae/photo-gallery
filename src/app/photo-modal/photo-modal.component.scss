@@ -3,29 +3,57 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 1;
     left: 0;
     top: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: black;
+
+    .modal-header {
+        position: fixed;
+        top: 10px;
+        left: 32px;
+        z-index: 1;
+
+        span {
+            color: white;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            position: fixed;
+            right: 32px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: #888;
+            }
+        }
+    }
 }
 
 .modal-content {
     background-color: black;
     margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    max-width: 90vw;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+
+    border: none;
 
     img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
         width: 100%;
-        margin: 0 auto;
+        object-fit: contain;
 
-        @media (orientation: landscape) {
-            max-height: calc(100vh - 12rem);
-        }
+        max-height: 100vh;
     }
 
     h1,
@@ -40,19 +68,46 @@
         }
     }
 
-    .date-taken {
-        font-size: 0.75rem;
+    .details {
+        // put this on the bottom of the viewport
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        padding: 1rem;
+
+        .date-taken {
+            font-size: 0.75rem;
+        }
     }
 
     .btn-group {
-        margin-bottom: 1rem;
+        // center the buttons vertically in viewport
+
+        position: fixed;
+        bottom: 50vh;
+        left: 0;
+        z-index: 1;
+        width: 100%;
 
         button {
-            background-color: black;
+            // put circular border around button
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 0.5rem;
+
+            // background semi-transparent black
+            background-color: rgba(0, 0, 0, 0.25);
+
             color: white;
+            font-weight: bold;
+            border: none;
 
             &:last-child {
                 float: right;
+                padding-right: 1rem;
             }
 
             &:disabled {
@@ -65,7 +120,6 @@
 
 .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
 }

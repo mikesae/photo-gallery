@@ -1,7 +1,9 @@
 <div class="modal">
     <div class="modal-content">
-        <span class="close close-btn" (click)="closeModal()">&times;</span>
-        <h1>{{selectedPhoto.title}}</h1>
+        <div class="modal-header">
+            <span>{{selectedPhoto.title}}</span>
+            <span class="close close-btn" (click)="closeModal()">&times;</span>
+        </div>
         <div class="btn-group">
             <button mat-icon-button (click)="previousPhoto()" [disabled]="isFirstPhoto()">
                 <mat-icon>chevron_left</mat-icon>
@@ -10,8 +12,10 @@
                 <mat-icon>chevron_right</mat-icon>
             </button>
         </div>
-        <img [src]="selectedPhoto.largeUrl" alt="Photo">
-        <p>{{selectedPhoto.description}}</p>
-        <p class="date-taken">{{selectedPhoto.dateTaken}}</p>
+        <img #photo [src]="selectedPhoto.largeUrl" alt="Photo">
+        <div class="details">
+            <p>{{selectedPhoto.description}}</p>
+            <p class="date-taken">{{selectedPhoto.dateTaken}}</p>
+        </div>
     </div>
 </div>
