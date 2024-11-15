@@ -47,8 +47,9 @@
 
     img {
         position: fixed;
-        top: 0;
+        top: 50%;
         left: 0;
+        transform: translateY(-50%);
         z-index: 0;
         width: 100%;
         object-fit: contain;
@@ -69,6 +70,12 @@
     }
 
     .details {
+
+        // hide if landscape orientation
+        @media (orientation: landscape) {
+            display: none;
+        }
+
         // put this on the bottom of the viewport
         position: fixed;
         bottom: 0;
@@ -84,10 +91,10 @@
 
     .btn-group {
         // center the buttons vertically in viewport
-
         position: fixed;
-        bottom: 50vh;
+        top: 50%;
         left: 0;
+        transform: translateY(-50%);
         z-index: 1;
         width: 100%;
 
@@ -104,6 +111,7 @@
             color: white;
             font-weight: bold;
             border: none;
+            cursor: pointer;
 
             &:last-child {
                 float: right;
