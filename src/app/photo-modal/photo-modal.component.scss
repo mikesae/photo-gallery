@@ -11,6 +11,10 @@
     background-color: black;
 
     .modal-header {
+        @media (orientation: landscape) {
+            display: none;
+        }
+
         position: fixed;
         top: 10px;
         left: 32px;
@@ -90,6 +94,12 @@
     }
 
     .btn-group {
+
+        // hide if mobile or tablet viewport
+        @media (max-width: 1024px) {
+            display: none;
+        }
+
         // center the buttons vertically in viewport
         position: fixed;
         top: 50%;
