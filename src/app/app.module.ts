@@ -1,6 +1,6 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig, HammerModule } from '@angular/platform-browser';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,7 +17,14 @@ import { AlbumCollectionsComponent } from './album-collections/album-collections
 import { AlbumCollectionComponent } from './album-collection/album-collection.component';
 import { AlbumCardComponent } from './album-card/album-card.component';
 import { PhotoModalComponent } from './photo-modal/photo-modal.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import * as Hammer from 'hammerjs';
+
+export class HammerConfig extends HammerGestureConfig {
+  override overrides = <any>{
+    'swipe': { direction: Hammer.DIRECTION_ALL }
+  };
+}
 
 @NgModule({
   declarations: [
@@ -31,6 +38,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HammerModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -47,7 +55,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     NgxMasonryModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConfig
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

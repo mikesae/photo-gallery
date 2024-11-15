@@ -1,4 +1,5 @@
-<div class="modal">
+<div class="modal" (swipeleft)="nextPhoto()" (swiperight)="previousPhoto()" (swipeup)="closeModal()"
+    (swipedown)="closeModal()">
     <div class="modal-content">
         <div class="modal-header">
             <span>{{selectedPhoto.title}}</span>
